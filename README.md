@@ -31,6 +31,23 @@
    ```
 6. В CLI диаграммы сохраняются в папку `charts` (можно изменить через `--chart-dir`). Если `matplotlib` не установлен, текстовый отчёт всё равно будет сформирован.
 
+## Сборка и запуск через .exe на Windows 10/11
+1. Установите Python 3.10+ и Git. Создайте/активируйте виртуальное окружение: `python -m venv venv && venv\Scripts\activate`.
+2. Установите зависимости и PyInstaller:
+   ```bat
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt pyinstaller
+   ```
+3. Соберите исполняемый файл (GUI и CLI) одной командой:
+   ```bat
+   pyinstaller --clean --noconfirm WinDiskOptimizer.spec
+   ```
+   - `WinDiskOptimizer.exe` (GUI) появится в `dist\WinDiskOptimizer\`.
+   - `WinDiskOptimizerCLI.exe` (CLI) появится в `dist\WinDiskOptimizerCLI\`.
+4. Запустите GUI без поиска файлов вручную: двойной клик по `WinDiskOptimizer.exe`.
+   - Все отчёты и графики отображаются прямо в окне (гистограмма/круговая диаграмма по выбору, подсказки с путём и размером при наведении).
+5. Для быстрой сборки в будущем можно использовать скрипт `scripts\build_windows_exe.bat` (запускайте из PowerShell или CMD из каталога `scripts`).
+
 ## Профили
 - **fast** — поверхностный анализ верхних уровней каталога, минимум рекомендаций.
 - **safe** (по умолчанию) — сбалансированный анализ с умеренной глубиной обхода.
